@@ -1,86 +1,60 @@
 <?php
 // задание 1
 
-$true_answer = 988;
-
-do {
-    $user_answer = readline("В каком году произошло крещение Руси? Варианты ответа: 810, 988, 740 ");
-    if ($user_answer == $true_answer) {
-        echo "Вы угадали! \n";
-    } elseif ($user_answer == 810 || $user_answer == 740) {
-        echo "Не верно \n";
-        break;
-    } elseif ($user_answer != 810 || $user_answer != 988 || $user_answer != 740) {
-        echo "Выберите корректный ответ. Попробуйте еще раз \n";
-    }
-} while ($user_answer != $true_answer);
-
+for ($i = 0; $i < 10; $i++) {
+    $arr1[] = rand(1, 10);
+    $arr2[] = rand(1, 10);
+    $arr_mult[] = $arr1[$i] * $arr2[$i];
+}
+print_r($arr_mult);
 // задание 2
+$wishes = ['счастья', 'здоровья', 'воображения', 'тепла', 'терпения'];
+$epithets = ['крепкого', 'бесконечного', 'домашнего', 'искреннего'];
 $name = readline("Как вас зовут? \n");
-$task_day = readline("Сколько задач запланировано у вас на день? \n");
-
-for ($i = 0; $i < $task_day; $i++) {
-
-    $task = readline("Какая задача стоит перед вами сегодня? \n");
-    $time = readline("Сколько примерно времени эта задача у вас займет? \n");
-    $own_tasks .= " - " . $task . " " . " ($time ч) \n";
-    $sum_own += $time;
+for ($i = 0; $i < 3; $i++) {
+    $epithet_wish[] = $epithets[array_rand($epithets, 1)] . " " . $wishes[array_rand($wishes, 1)];
 }
+$last_wish = " и " . array_pop($epithet_wish);
 
-echo "$name, сегодня у вас запланировано $task_day приоритетных задачи на день: \n
-$own_tasks
-Примерное время выполнения плана = $sum_own ч \n";
+echo "Дорогой $name, от всего сердца поздравляю тебя с днем рождения, желаю " . implode(", ", $epithet_wish) . $last_wish . "!. \n";
 
-// задание 3
+//задание 3
+$students = [
+    'ИТ20' => [
+        'Иванов Иван' => 5,
+        'Кириллов Кирилл' => 3,
+        'Петров Петр' => 2,
+        'Смирнов Семен' => 4,
+    ],
+    'БАП20' => [
+        'Антонов Антон' => 4,
+        'Петров Ярослав' => 5,
+        'Федорова Яна' => 2,
+    ]
+];
+foreach ($students as $group => $members) {
+    $average_mark[] = array_sum(array_values($members)) / count($members);
+}
+$group_with_high_marks = "Группа с наибольшим значением успеваемости: " . $group . " - " . max(array_values($average_mark)) . " \n";
+print_r($group_with_high_marks);
 
-$finger = readline("Введите интересующий номер пальца \n");
-for ($n = 0; $n < $finger; $n++) {
-    switch (true) {
-        case ($finger == (8 * $n + 1)):
-            echo "Большой палец \n";
-            break;
-        case ($finger == (2 * $n + 6 * $n) || $finger == (2 * $n + 6 * $n + 2)):
-            echo "Указательный палец \n";
-            break;
-        case ($finger == (4 * $n + 3)):
-            echo "Средний палец \n";
-            break;
-        case ($finger == (4 + 8 * $n) || $finger == (4 + 8 * $n + 2)):
-            echo "Безымянный палец \n";
-            break;
-        case ($finger == (8 * $n + 5)):
-            echo "Мизинец \n";
-            break;
-        case ($finger < 0):
-            echo "Введите корректный номер \n";
-            break;
+$students_for_deduction = "Студенты на отчисление: \n";
+foreach ($students as $group => $members) {
+    $students_for_deduction .= "Группа $group:\n";
+    foreach ($members as $name => $mark) {
+        if ($mark < 3) {
+            $students_for_deduction .= "\t- $name (оценка $mark)\n";
+        }
     }
 }
-
-//задание 4
-
-for ($i = 1; $i <= 100; $i++) {
-    if ($i % 3 == 0 && $i % 5 == 0) {
-        echo "FizzBuzz \n";
-    } elseif ($i % 5 == 0) {
-        echo "Buzz \n";
-    } elseif ($i % 3 == 0) {
-        echo "Fizz \n";
-    } else {
-        echo "$i \n";
-    }
-}
+print_r($students_for_deduction);
 
 //задание 5
-$apple = readline("Введите количество яблок \n");
-switch (true) {
-    case $apple == 1:
-        echo "$apple яблоко\n";
-        break;
-    case $apple >= 2 && $apple < 5:
-        echo "$apple яблока\n";
-        break;
-    case $apple >= 5:
-        echo "$apple яблок\n";
-        break;
+$arr = [];
+for ($i = 0; $i < 100; $i++) {
+    $num = rand(1, 200);
+    if (!in_array($num, $arr)) {
+        $arr[] = $num;
+    }
 }
+print_r($arr);
